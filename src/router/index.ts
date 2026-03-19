@@ -1,11 +1,23 @@
 import { createRouter, createWebHistory } from '@ionic/vue-router';
 import { RouteRecordRaw } from 'vue-router';
-import TabsPage from '../views/TabsPage.vue'
+import TabsPage from '../views/TabsPage.vue';
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
-    redirect: '/tabs/tab1'
+    redirect: '/login'
+  },
+  {
+    path: '/login',
+    component: () => import('@/views/LoginPage.vue')
+  },
+  {
+    path: '/registro',
+    component: () => import('@/views/RegistroPage.vue')
+  },
+  {
+    path: '/hardware',
+    component: () => import('@/views/Hardware.vue')
   },
   {
     path: '/tabs/',
@@ -29,11 +41,11 @@ const routes: Array<RouteRecordRaw> = [
       }
     ]
   }
-]
+];
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes
-})
+});
 
-export default router
+export default router;
