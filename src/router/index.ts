@@ -9,15 +9,15 @@ const routes: Array<RouteRecordRaw> = [
   },
   {
     path: '/login',
-    component: () => import('@/views/LoginPage.vue')
+    component: () => import('../views/Tab1Page.vue') // Usamos Tab1 como tu Login
   },
   {
     path: '/registro',
-    component: () => import('@/views/RegistroPage.vue')
+    component: () => import('../views/Tab2Page.vue') // Usamos Tab2 como tu Registro
   },
   {
     path: '/hardware',
-    component: () => import('@/views/Hardware.vue')
+    component: () => import('../views/Hardware.vue') // Verifica que este archivo exista
   },
   {
     path: '/tabs/',
@@ -29,15 +29,15 @@ const routes: Array<RouteRecordRaw> = [
       },
       {
         path: 'tab1',
-        component: () => import('@/views/Tab1Page.vue')
+        component: () => import('../views/Tab1Page.vue')
       },
       {
         path: 'tab2',
-        component: () => import('@/views/Tab2Page.vue')
+        component: () => import('../views/Tab2Page.vue')
       },
       {
         path: 'tab3',
-        component: () => import('@/views/Tab3Page.vue')
+        component: () => import('../views/Tab3Page.vue')
       }
     ]
   }
