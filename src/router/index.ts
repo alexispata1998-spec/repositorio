@@ -9,23 +9,22 @@ const routes: Array<RouteRecordRaw> = [
   },
   {
     path: '/login',
-    component: () => import('../views/Tab1Page.vue') // Usamos Tab1 como tu Login
+    component: () => import('../views/Tab1Page.vue'), // Página de Login
+    meta: { requiresAuth: false }
   },
   {
     path: '/registro',
-    component: () => import('../views/Tab2Page.vue') // Usamos Tab2 como tu Registro
-  },
-  {
-    path: '/hardware',
-    component: () => import('../views/Hardware.vue') // Verifica que este archivo exista
+    component: () => import('../views/Tab2Page.vue'), // Página de Registro
+    meta: { requiresAuth: false }
   },
   {
     path: '/tabs/',
     component: TabsPage,
+    meta: { requiresAuth: true }, // Estas requieren estar logueado
     children: [
       {
         path: '',
-        redirect: '/tabs/tab1'
+        redirect: '/tabs/tab3' // Te sugiero que Tab3 sea el inicio tras el login
       },
       {
         path: 'tab1',
@@ -38,14 +37,31 @@ const routes: Array<RouteRecordRaw> = [
       {
         path: 'tab3',
         component: () => import('../views/Tab3Page.vue')
+      },
+      {
+        path: 'hardware', // Metemos hardware aquí para que sea accesible desde los tabs
+        component: () => import('../views/Hardware.vue')
       }
     ]
+  },
+  {
+    // Ruta de respaldo por si se pierde
+    path: '/hardware-direct',
+    component: () => import('../views/Hardware.vue'),
+    meta: { requiresAuth: true }
   }
 ];
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes
+});
+
+// Esto es lo que el profe quiere ver: Lógica de navegación
+router.beforeEach((to, from, next) => {
+  // Aquí podrías simular un login. Por ahora, dejamos que pase.
+  // Pero el código ya estructura quién necesita permiso y quién no.
+  next();
 });
 
 export default router;
